@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,42 +16,57 @@ public class CSVUtil {
     private static Logger log = Logger.getLogger(CSVUtil.class);
     public static void writeCSV(String type, List<String[]> data){
         File file = null;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd");
         Date date = new Date();
         String dt = simpleDateFormat.format(date);
         switch (type) {
             case "class":
-                String classfile = dt+"_class.csv";
+                String classfile = FinalTable.LOG_PATH + dt+"_class.csv";
                 file = new File(classfile);
-                if (!file.exists())
-                    file.mkdir();
+                if (!file.exists()) {
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        log.error("class csv write error: "+ classfile);
+                    }
+                }
                 write(classfile,data);
                 break;
             case "shop":
-                String shopfile = dt+"_shop.csv";
+                String shopfile = FinalTable.LOG_PATH+dt+"_shop.csv";
                 file = new File(shopfile);
-                if (!file.exists())
-                    file.mkdir();
+                if (!file.exists()) {
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        log.error("shop csv write error: "+ shopfile);
+                    }
+                }
                 write(shopfile,data);
                 break;
             case "gift":
-                String giftfile = dt+"_gift.csv";
+                String giftfile = FinalTable.LOG_PATH+dt+"_gift.csv";
                 file = new File(giftfile);
-                if (!file.exists())
-                    file.mkdir();
+                if (!file.exists()) {
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        log.error("gift csv write error: "+ giftfile);
+                    }
+                }
                 write(giftfile,data);
                 break;
-
         }
     }
 
     private static void write(String path, List<String[]>data){
         CSVWriter writer = null;
         try {
-            writer = new CSVWriter(new OutputStreamWriter(new FileOutputStream(path), StandardCharsets.UTF_8.name()), CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+            writer = new CSVWriter(new OutputStreamWriter(new FileOutputStream(path,true), StandardCharsets.UTF_8.name()), CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
             writer.writeAll(data);
         } catch (UnsupportedEncodingException | FileNotFoundException e) {
             log.error("csv write error"+path);
+//            e.printStackTrace();
         } finally {
             if (null != writer) {
                 try {
@@ -89,5 +105,14 @@ public class CSVUtil {
         int lineNo = lnr.getLineNumber();
         lnr.close();
         return lineNo;
+    }
+
+    public static void main(String[] args) {
+        List<String[]> list = new ArrayList<>();
+        String[] s1 = {"333","xxxx","tooo"};
+        String[] s2 = {"444","aaaa","bbbb"};
+        list.add(s1);
+        list.add(s2);
+        CSVUtil.writeCSV("class",list);
     }
 }
