@@ -1,85 +1,126 @@
 package snc.server.ide.pojo;
 
 public class Commodity {
-    private String c_sid;               //礼物id
-    private String c_name;
-    private double c_price;
-    private double marketprice;      //市场价
+
+    private String pid;              //用户唯一id
+
+    public String getC_stock() {
+        return c_stock;
+    }
+
+    private String sid;               //礼物id
+    private int num;               //购买数量
+    private double price;
+    private String col;            //商品颜色
+    private String mod;            //型号
+    private String size;              //大小
+//    private String commodity;         //属性
     private String c_brand;
     private String c_image;
-    private int c_type;
-    private String c_spuid;              //是否是同一个商品只是属性不同
-    private int c_sold;                //销量
-
-    public String getC_sid() {
-        return c_sid;
-    }
-
-    public void setC_sid(String c_sid) {
-        this.c_sid = c_sid;
-    }
-
-    public String getC_name() {
-        return c_name;
-    }
-
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
-    }
-
-    public double getC_price() {
-        return c_price;
-    }
-
-    public void setC_price(double c_price) {
-        this.c_price = c_price;
-    }
-
-    public double getMarketprice() {
-        return marketprice;
-    }
-
-    public void setMarketprice(double marketprice) {
-        this.marketprice = marketprice;
-    }
+    private String c_type;
+    private String c_details;
+    private String c_stock;
 
     public String getC_brand() {
         return c_brand;
-    }
-
-    public void setC_brand(String c_brand) {
-        this.c_brand = c_brand;
     }
 
     public String getC_image() {
         return c_image;
     }
 
-    public void setC_image(String c_image) {
-        this.c_image = c_image;
-    }
-
-    public int getC_type() {
+    public String getC_type() {
         return c_type;
     }
 
-    public void setC_type(int c_type) {
-        this.c_type = c_type;
+    public String getC_details() {
+        return c_details;
     }
 
-    public String getC_spuid() {
-        return c_spuid;
+    public void setC_drtails(String c_drtails) {
+        this.c_details = c_drtails;
     }
 
-    public void setC_spuid(String c_spuid) {
-        this.c_spuid = c_spuid;
+    public String getPid() {
+        return pid;
     }
 
-    public int getC_sold() {
-        return c_sold;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public void setC_sold(int c_sold) {
-        this.c_sold = c_sold;
+    public String getSid() {
+        return sid;
     }
+
+    public void setSid(String gid) {
+        this.sid = gid;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getCol() {
+        return col;
+    }
+
+    public void setCol(String col) {
+        this.col = col;
+    }
+
+    public String getMod() {
+        return mod;
+    }
+
+    public void setMod(String mod) {
+        this.mod = mod;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setC_brand(String brand) {//联想
+        this.c_brand=brand;
+    }
+
+    public void setC_stock(String s) {
+        this.c_stock=s;
+    }
+
+    public void setC_details(String details) {
+        this.c_details=details;
+    }
+
+    public void setC_image(String image) {
+        this.c_image=image;
+    }
+
+    public void setC_type(String type) {
+        this.c_type=type;
+    }
+//    public String getCommodity() {
+//        return commodity;
+//    }
+//
+//    public void setCommodity(String commodity) {
+//        this.commodity = commodity;
+//    }
 }
