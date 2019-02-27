@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f409fd0f-d4a6-4a9f-b99c-45b361b11956" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/dao/HoutaiCommodityDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/CartCommodity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/HoutaiCommodity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/service/HoutaiCommodityService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/service/impl/HoutaiCommodityImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/resources/ide/mapping/HoutaiCommodityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/boot/util/FinalTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/boot/util/FinalTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/boot/util/es/ElasticsearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/boot/util/es/ElasticsearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/BuyCommodityHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/CheckCartHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/CommodityFirstHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/CommodityFirstHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/DeletesCartHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/ShoppcartHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/handler/ShoppcartHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/service/handler/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/service/handler/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/snc/server/ide/test/Elasticsearch/Elasticsearch5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/snc/server/ide/test/Elasticsearch/Elasticsearch5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/resources/jdbc.properties" afterDir="false" />
-    </list>
+    <list default="true" id="f409fd0f-d4a6-4a9f-b99c-45b361b11956" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,11 +12,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HoutaiCommodity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/HoutaiCommodity.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="Add.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/service/handler/Add.java">
           <provider selected="true" editor-type-id="text-editor" />
@@ -60,9 +32,13 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="HoutaiCommodityMapper.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HoutaiCommodityMapper.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/resources/ide/mapping/HoutaiCommodityMapper.xml">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" selection-start-line="5" selection-end-line="12" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
@@ -74,11 +50,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommodityFirstHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommodityFirstHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/handler/CommodityFirstHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="234" column="8" lean-forward="true" selection-start-line="234" selection-start-column="8" selection-end-line="234" selection-end-column="8" />
+            <state relative-caret-position="666">
+              <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HoutaiCommodityDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/dao/HoutaiCommodityDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -143,7 +128,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="12" />
+    <option name="x" value="67" />
     <option name="y" value="27" />
     <option name="width" value="1000" />
     <option name="height" value="1040" />
@@ -532,6 +517,14 @@
       <workItem from="1550920850613" duration="1233000" />
       <workItem from="1550893324896" duration="795000" />
     </task>
+    <task id="LOCAL-00001" summary="完善查询商品">
+      <created>1551269951906</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1551269951906</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -546,7 +539,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15860000" />
+    <option name="totallyTimeSpent" value="17341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -614,6 +607,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完善查询商品" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善查询商品" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/java/snc/boot/util/CSVUtil.java">
@@ -976,9 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/dao/HoutaiCommodityDao.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/pojo/CartCommodity.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -998,9 +992,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/test/Elasticsearch/Elasticsearch5.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/resources/ide/mapping/HoutaiCommodityMapper.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/resources/jdbc.properties">
@@ -1029,8 +1020,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/handler/CommodityFirstHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="234" column="8" lean-forward="true" selection-start-line="234" selection-start-column="8" selection-end-line="234" selection-end-column="8" />
+        <state relative-caret-position="666">
+          <caret line="274" lean-forward="true" selection-start-line="274" selection-end-line="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/snc/server/ide/dao/HoutaiCommodityDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/resources/ide/mapping/HoutaiCommodityMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="5" selection-end-line="12" />
         </state>
       </provider>
     </entry>
