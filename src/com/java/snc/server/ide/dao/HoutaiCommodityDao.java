@@ -1,7 +1,6 @@
 package snc.server.ide.dao;
 
 import snc.server.ide.pojo.HoutaiCommodity;
-import snc.server.ide.pojo.Vm;
 
 public interface HoutaiCommodityDao {
 

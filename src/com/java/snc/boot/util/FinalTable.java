@@ -45,13 +45,54 @@ public class FinalTable {
     public final static String VM_MEM = "mem"; //vm的内存容量
     public final static String VM_DISK = "disk"; //vm的磁盘容量
 
-    public final static String COMMOFITY_SID="sid";//商品id
-    public final static String COMMODITY_NUM="num";//购买商品的数量
+    public final static String COMMODITY_PAGE="c_page";
+    public final static String COMMODITY_SID="c_sid";//商品id
+    public final static String COMMODITY_NAME="c_name";
+    public final static String COMMODITY_PRICE="c_price";//购买商品的价格(积分)
+    public final static String COMMODITY_COL="c_col";//购买商品的颜色
+    public final static String COMMODITY_MOD="c_mod";//购买商品的型号
     public final static String COMMODITY_SIZE="size";//购买商品的大小
-    public final static String COMMODITY_MOD="mod";//购买商品的型号
-    public final static String COMMODITY_COL="col";//购买商品的颜色
-    public final static String COMMODITY_PRICE="price";//购买商品的价格(积分)
-    public final static String LOG_PATH="/home/jac/log/snc_info/";
+    public final static String COMMODITY_BRAND="c_brand";
+    public final static String COMMODITY_IMAGE="c_image";
+    public final static String COMMODITY_TYPE="c_type";
+    public final static String COMMODITY_DETAILS="c_details";
+    public final static String COMMODITY_NUM="num";//购买商品的数量
+    public final static String COMMODITY_HOT="c_hot";
+    public final static String COMMODITY_SOLD="c_sold";
+    public final static String COMMODITY_PRICE_LOW="c_low";//前端传来的价格低区间
+    public final static String COMMODITY_PRICE_HIRH="c_high";//前端传来的价格高区间
+    public final static String COMMODITY_TEXT="c_text";//商品查询条件
+    public final static int ES_SIZE_COMMODITY=10;  //查询商品返回的数目
+
+    public final static String ES_INDEX_COMMODITY="commodity";
+    public final static String ES_TYPE_COMMODITY="commodity";
+    public final static String ES_TYPE_TYPE="type";//es type表
+    public final static String ElasticsearchService_ClusterNmae="elasticsearch";
+    public final static String ElasticsearchService_IP="127.0.0.1";
+
+    public final static int ElasticsearchService_PORT=9300;
+
+
+
+    private String pid;              //用户唯一id
+    private String c_sid;            //礼物id
+    private String c_name;
+    private double c_price;          //按照ue图 购物车里不用显示商品的市场价；
+    private String c_col;            //商品颜色
+    private String c_mod;            //型号
+    private String c_size;           //大小
+    private String c_brand;
+    private String c_image;
+    private String c_type;
+    private String c_details;
+    private int num;
+
+
+
+
+
+
+
 
     public final static String USER_ID = "U_";
     public final static String DOCKER_ID = "D";
@@ -63,5 +104,4 @@ public class FinalTable {
     public final static String NO_ERROR="0";
     public final static String ERROR="1";
 
-    public final static String COMMODITY_PAGE="page";
 }

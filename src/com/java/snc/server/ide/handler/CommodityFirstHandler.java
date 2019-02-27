@@ -12,6 +12,7 @@ import snc.boot.util.common.Router;
 import snc.boot.util.es.ESQueryBuilderConstructor;
 import snc.boot.util.es.ESQueryBuilders;
 import snc.boot.util.es.ElasticsearchService;
+
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -275,6 +276,7 @@ public class CommodityFirstHandler extends ChannelInboundHandlerAdapter{
 
             default:
                 ctx.fireChannelRead(msg);
+                break;
         }
     }
 }

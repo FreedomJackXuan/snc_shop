@@ -1,8 +1,6 @@
 package snc.server.ide.test.Elasticsearch;
 
 
-
-import com.google.gson.JsonArray;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -23,26 +21,19 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
 import org.junit.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import redis.clients.jedis.Jedis;
 import snc.boot.util.RedisUtils;
-import snc.server.ide.dao.HoutaiCommodityDao;
 import snc.server.ide.pojo.Class;
-
-import snc.server.ide.pojo.HoutaiCommodity;
 import snc.server.ide.pojo.Gift;
-import snc.server.ide.service.GiftService;
+import snc.server.ide.pojo.HoutaiCommodity;
 import snc.server.ide.service.HoutaiCommodityService;
-import snc.server.ide.service.impl.HoutaiCommodityImpl;
 import snc.server.ide.tttt.pojo.User;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
