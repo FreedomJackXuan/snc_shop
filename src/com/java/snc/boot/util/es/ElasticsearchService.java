@@ -45,6 +45,8 @@ public class ElasticsearchService {
 
     public ElasticsearchService(String clusterName, String ip, int port) {
         try {
+            System.setProperty("es.set.netty.runtime.available.processors", "false");
+
             Settings settings = Settings.builder().put("cluster.name", clusterName).build();
             this.client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ip), port));

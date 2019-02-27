@@ -1,7 +1,6 @@
 package snc.server.ide.test.Elasticsearch;
 
 
-
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -12,7 +11,6 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -23,10 +21,13 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.stereotype.Controller;
+import redis.clients.jedis.Jedis;
+import snc.boot.util.RedisUtils;
 import snc.server.ide.pojo.Class;
-import snc.server.ide.pojo.Commodity;
-
 import snc.server.ide.pojo.Gift;
+import snc.server.ide.pojo.HoutaiCommodity;
+import snc.server.ide.service.HoutaiCommodityService;
 import snc.server.ide.tttt.pojo.User;
 
 import java.io.IOException;
@@ -39,49 +40,61 @@ import java.util.concurrent.ExecutionException;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-
+@Controller
 public class Elasticsearch5 {
     public static TransportClient client = null;
     public final static String HOST = "127.0.0.1";
     public final static int PORT = 9300;
     private static InetSocketTransportAddress node =null;
+    private static Jedis jedis;
+    private HoutaiCommodityService houtaiCommodityService;
+    static  {
+        {
 
-//    static  {
-//        {
-//
-//            try {
-//                System.setProperty("es.set.netty.runtime.available.processors", "false");
-//                node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
-//                Settings settings = Settings.builder()
-//                        .put("cluster.name", "elasticsearch")
-//                        .build();
-//                client = new PreBuiltTransportClient(settings);
-//                client.addTransportAddress(node);
-//                System.out.println("创建成功");
-//            } catch (UnknownHostException e) {
-//                System.out.println("创建数据库中出现错误");
-//                e.printStackTrace();
-//            }
-//        }
+            try {
+                jedis = RedisUtils.getJedis();
+
+                System.setProperty("es.set.netty.runtime.available.processors", "false");
+                node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
+                Settings settings = Settings.builder()
+                        .put("cluster.name", "elasticsearch")
+                        .build();
+                client = new PreBuiltTransportClient(settings);
+                client.addTransportAddress(node);
+                System.out.println("创建成功");
+            } catch (UnknownHostException e) {
+                System.out.println("创建数据库中出现错误");
+                e.printStackTrace();
+            }
+        }
+    }
+
+//    public Elasticsearch5(HoutaiCommodityService houtaiCommodityService) {
+//        this.houtaiCommodityService=houtaiCommodityService;
 //    }
-     //创建连接
-     @Before
-     public static TransportClient getClient() {
+    public Elasticsearch5( ) {
+    }
 
-             try {
-                 node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
-                 Settings settings = Settings.builder()
-                         .put("cluster.name", "elasticsearch")
-                         .build();
-                 client = new PreBuiltTransportClient(settings);
-                 client.addTransportAddress(node);
-                 System.out.println("创建成功");
-                 return client;
-             } catch (UnknownHostException e) {
-                 System.out.println("创建数据库中出现错误");
-                 return null;
-             }
-     }
+    //  创建连接
+    @Before
+    public void getClient() {
+        {
+
+            try {
+                jedis = RedisUtils.getJedis();
+                node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
+                Settings settings = Settings.builder()
+                        .put("cluster.name", "elasticsearch")
+                        .build();
+                client = new PreBuiltTransportClient(settings);
+                client.addTransportAddress(node);
+                System.out.println("创建成功");
+            } catch (UnknownHostException e) {
+                System.out.println("创建数据库中出现错误");
+                e.printStackTrace();
+            }
+        }
+    }
      //创建用户
     public  void createUser(User user){
         XContentBuilder jsonBuild = null;
@@ -145,33 +158,110 @@ public class Elasticsearch5 {
         client.close();
     }
     @Test
-    //创建商品
-    public  void createCart(){
-        Commodity commodity = new Commodity();
-        commodity.setNum(22);
-        commodity.setPrice(2500);
-        commodity.setC_brand("戴尔");
-        commodity.setC_stock("10");
-        commodity.setCol("红色");
-        commodity.setC_details("这个产品售后很好");
-        commodity.setC_image("/home/mmz");
-        commodity.setMod("asd");
-        commodity.setSid("15");
-        commodity.setSize("小");
-        commodity.setC_type("电脑");
+    public void createType(){     //给商品类型建表
         XContentBuilder jsonBuild = null;
         try {
             jsonBuild = jsonBuilder();
             //每一个filed里面存的就是列名和列值
-            jsonBuild.startObject().field("c_price", commodity.getPrice()).field("c_size",commodity.getSize())
-                    .field("c_brand",commodity.getC_brand()).field("c_stock",commodity.getC_stock()).field("c_sold", commodity.getNum())
-                    .field("c_col", commodity.getCol()).field("c_mod", commodity.getMod()).field("c_image", commodity.getC_image())
-                    .field("c_details", commodity.getC_details()).field("c_type", commodity.getC_type()).endObject();
+            jsonBuild.startObject().field("c_type","衣服").field("c_brand","耐克").endObject();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        IndexResponse response = client.prepareIndex("commodity", "commodity",commodity.getSid()).setSource(jsonBuild).get();
+        IndexResponse response = client.prepareIndex("commodity", "type").setSource(jsonBuild).get();
+        client.close();
+    }
+    @Test
+    //创建商品
+    public  void createCommodity(){
+        HoutaiCommodity commodity = new HoutaiCommodity();
+        commodity.setC_name("苹果 Apple iPhone XR (A2108) 128GB 黑色 移动联通电信4G手机 双卡双待");
+        commodity.setC_price(6199.00);
+        commodity.setMarketprice(6200.00);
+        commodity.setC_brand("苹果");
+        commodity.setC_stock(10);
+        commodity.setC_col("黑色");
+        commodity.setC_details("双！");
+        commodity.setC_image("homemmz");
+        commodity.setC_mod("asd");
+        commodity.setC_sid("37");
+        commodity.setC_size("128GB");
+        commodity.setC_type("数码产品");
+        commodity.setC_spuid("23");
+        commodity.setC_hot(20);
+        commodity.setC_sold(510);
+
+        HoutaiCommodity commodity2 = new HoutaiCommodity();
+        commodity2.setC_name("苹果 Apple iPhone XR (A2108) 128GB 白色 移动联通电信4G手机 双卡双待\n");
+        commodity2.setC_price(6149.00);
+        commodity2.setMarketprice(6150.00);
+        commodity2.setC_brand("苹果");
+        commodity2.setC_stock(10);
+        commodity2.setC_col("白色");
+        commodity2.setC_details("双卡双待！");
+        commodity2.setC_image("homemmz");
+        commodity2.setC_mod("asd");
+        commodity2.setC_size("128GB");
+        commodity2.setC_type("数码产品");
+        commodity2.setC_sold(510);
+        commodity2.setC_spuid("23");//判断是否是同一个商品
+        commodity2.setC_sid("38");
+        commodity.setC_hot(30);
+
+
+
+        HoutaiCommodity commodity3 = new HoutaiCommodity();
+        commodity3.setC_name("苹果 Apple iPhone XR (A2108) 128GB 黄色 移动联通电信4G手机 双卡双待\n");
+        commodity3.setC_price(7180.00);
+        commodity3.setMarketprice(80);
+        commodity3.setC_brand("苹果");
+        commodity3.setC_stock(10);
+        commodity3.setC_col("黄色");
+        commodity3.setC_details("双接口");
+        commodity3.setC_image("homemmz");
+        commodity3.setC_mod("asd");
+        commodity3.setC_sid("39");
+        commodity3.setC_size("128GB");
+        commodity3.setC_type("数码产品");
+        commodity3.setC_spuid("23");
+        commodity3.setC_sold(510);
+        commodity.setC_hot(50);
+
+        List<HoutaiCommodity> list=new ArrayList();
+        list.add(commodity);
+        list.add(commodity2);
+        list.add(commodity3);
+
+
+        XContentBuilder jsonBuild = null;
+
+//        HoutaiCommodityImpl houtaiCommodityDao=new HoutaiCommodityImpl();   //调用数据库
+//        jsonArray.add(commodity2);
+        for (int i=0;i<list.size();i++){    //遍历 从而将同一商品id存入redis的list中
+            HoutaiCommodity commodity1=(HoutaiCommodity)list.get(i);
+            houtaiCommodityService.insertCommodity(commodity1);
+
+            try {
+                jsonBuild = jsonBuilder();
+                //每一个filed里面存的就是列名和列值
+                jsonBuild.startObject(). field("c_sid", commodity1.getC_sid()).field("c_name",commodity1.getC_name()).field("c_spuid",commodity1.getC_spuid()).field("c_price", commodity1.getC_price()).field("marketprice",commodity1.getMarketprice() ).field("c_size",commodity1.getC_size())
+                        .field("c_brand",commodity1.getC_brand()).field("c_stock",commodity1.getC_stock())
+                        .field("c_col", commodity1.getC_col()).field("c_mod", commodity1.getC_mod()).field("c_image", commodity1.getC_image())
+                        .field("c_sold", commodity1.getC_sold()) .field("c_type", commodity1.getC_type()).field("c_details", commodity1.getC_details()).field("c_hot", commodity1.getC_hot()).endObject();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            IndexResponse response = client.prepareIndex("commodity", "commodity",commodity1.getC_sid()).setSource(jsonBuild).get();
+
+
+//            for (HoutaiCommodity h:list) {
+//                jedis.lpush(commodity1.getC_sid(),h.getC_sid());
+//
+//            }
+
+        }
+
         client.close();
     }
     //创建课程
@@ -191,7 +281,7 @@ public class Elasticsearch5 {
     }
 
     //分页,排序
-    @Test
+//    @Test
     public List CommodityFirst(String page)
     {
         String index="commodity";
@@ -202,7 +292,7 @@ public class Elasticsearch5 {
                 .setQuery(QueryBuilders.matchAllQuery())
                 .setSearchType(SearchType.QUERY_THEN_FETCH)
                 .setFrom((Integer.parseInt(page)-1)*10).setSize(10)//分页,设置分页的大小和展示第几页
-//                .addSort("c_price", SortOrder.DESC)//排序
+                .addSort("c_hot", SortOrder.DESC)//排序
                 .get();
         SearchHits hits = searchResponse.getHits();
         long total = hits.getTotalHits();
@@ -231,8 +321,8 @@ public class Elasticsearch5 {
                 .setTypes(type)
                 .setQuery(QueryBuilders.matchAllQuery())
                 .setSearchType(SearchType.QUERY_THEN_FETCH)
-                .setFrom(1).setSize(1)//分页
-                .addSort("c_price", SortOrder.DESC)//排序
+                .setFrom(1).setSize(10)//分页
+                .addSort("c_hot", SortOrder.DESC)//排序
                 .get();
 
         SearchHits hits = searchResponse.getHits();
@@ -292,7 +382,7 @@ public class Elasticsearch5 {
     @Test
     public void test11() throws Exception {
 
-        MultiMatchQueryBuilder builder = QueryBuilders.multiMatchQuery("电脑", "c_type", "c_details");
+        MultiMatchQueryBuilder builder = QueryBuilders.multiMatchQuery("苹色", "c_name","c_type");
         SearchResponse response = client.prepareSearch("commodity").setTypes("commodity")
                 .setQuery(builder)
                 .setSize(3)
@@ -301,7 +391,7 @@ public class Elasticsearch5 {
         SearchHits hits = response.getHits();
 
         for (SearchHit hit : hits){
-            System.out.println(hit.getSourceAsString());
+            System.out.println("==========================================="+hit.getSourceAsString());
 
             Map<String, Object> map = hit.getSourceAsMap();
 
@@ -314,8 +404,9 @@ public class Elasticsearch5 {
     //删除数据
     @Test
     public void testDelete() {
-        DeleteResponse response = client.prepareDelete("user", "Userinfo","AWcdTuLFchA3hQVg6V9F")
+        DeleteResponse response = client.prepareDelete("commodity", "commodity","36")
                 .get();
+        jedis.del("4");
         String index = response.getIndex();
         String type = response.getType();
         String id = response.getId();
@@ -324,18 +415,19 @@ public class Elasticsearch5 {
     }
     @Test
     public  void testupsert() throws IOException, ExecutionException, InterruptedException {
-        IndexRequest indexRequest = new IndexRequest("commodity", "commodity", "1")
+        IndexRequest indexRequest = new IndexRequest("commodity", "commodity", "37")
                 .source(jsonBuilder()
                         .startObject()
-                        .field("c_sold", 34)
+                        .field("c_hot", 20)
                         .endObject());
-        UpdateRequest updateRequest = new UpdateRequest("commodity", "commodity", "1")
+        UpdateRequest updateRequest = new UpdateRequest("commodity", "commodity", "35")
                 .doc(jsonBuilder()
                         .startObject()
-                        .field("c_sold", 38)
+                        .field("c_hot", 40)
                         .endObject())
                 .upsert(indexRequest); //如果不存在此文档 ，就增加 `indexRequest`
         client.update(updateRequest).get();
+
     }
 
 
