@@ -51,6 +51,7 @@ public class FinalTable {
     public final static String COMMODITY_MOD="mod";//购买商品的型号
     public final static String COMMODITY_COL="col";//购买商品的颜色
     public final static String COMMODITY_PRICE="price";//购买商品的价格(积分)
+    public final static String LOG_PATH="/home/jac/log/snc_info/";
 
     public final static String USER_ID = "U_";
     public final static String DOCKER_ID = "D";

@@ -46,42 +46,42 @@ public class Elasticsearch5 {
     public final static int PORT = 9300;
     private static InetSocketTransportAddress node =null;
 
-    static  {
-        {
-
-            try {
-                System.setProperty("es.set.netty.runtime.available.processors", "false");
-                node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
-                Settings settings = Settings.builder()
-                        .put("cluster.name", "elasticsearch")
-                        .build();
-                client = new PreBuiltTransportClient(settings);
-                client.addTransportAddress(node);
-                System.out.println("创建成功");
-            } catch (UnknownHostException e) {
-                System.out.println("创建数据库中出现错误");
-                e.printStackTrace();
-            }
-        }
-    }
-     //创建连接
-//     @Before
-//     public static TransportClient getClient() {
+//    static  {
+//        {
 //
-//             try {
-//                 node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
-//                 Settings settings = Settings.builder()
-//                         .put("cluster.name", "elasticsearch")
-//                         .build();
-//                 client = new PreBuiltTransportClient(settings);
-//                 client.addTransportAddress(node);
-//                 System.out.println("创建成功");
-//                 return client;
-//             } catch (UnknownHostException e) {
-//                 System.out.println("创建数据库中出现错误");
-//                 return null;
-//             }
-//     }
+//            try {
+//                System.setProperty("es.set.netty.runtime.available.processors", "false");
+//                node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
+//                Settings settings = Settings.builder()
+//                        .put("cluster.name", "elasticsearch")
+//                        .build();
+//                client = new PreBuiltTransportClient(settings);
+//                client.addTransportAddress(node);
+//                System.out.println("创建成功");
+//            } catch (UnknownHostException e) {
+//                System.out.println("创建数据库中出现错误");
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+     //创建连接
+     @Before
+     public static TransportClient getClient() {
+
+             try {
+                 node = new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT);
+                 Settings settings = Settings.builder()
+                         .put("cluster.name", "elasticsearch")
+                         .build();
+                 client = new PreBuiltTransportClient(settings);
+                 client.addTransportAddress(node);
+                 System.out.println("创建成功");
+                 return client;
+             } catch (UnknownHostException e) {
+                 System.out.println("创建数据库中出现错误");
+                 return null;
+             }
+     }
      //创建用户
     public  void createUser(User user){
         XContentBuilder jsonBuild = null;
