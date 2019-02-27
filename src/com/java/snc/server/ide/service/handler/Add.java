@@ -93,17 +93,5 @@ public  void del(String uid,String sid){
 //
 //        return String.valueOf(resultSet);
 //    }
-//public String product(String s){
-//        JSONObject jsonObj = JSON.parseObject(s);
-//        ResultSet resultSet=null;
-//        String pt1=jsonObj.getString("pt");
-//        String limit=jsonObj.getString("limit");
-//        int limit1= Integer.parseInt(limit);
-//        String type1=jsonObj.getString("type");
-//        String brand1=jsonObj.getString("brand");
-//        String text1=jsonObj.getString("text");
-//
-//        return String.valueOf(resultSet);
-//    }
 
 }
